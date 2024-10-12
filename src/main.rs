@@ -12,7 +12,6 @@ fn main() {
     println!("Please input your guess.");
     let mut tries = 0;
     loop {
-        tries = tries + 1;
         let mut guess = String::new();
         io::stdin()
             .read_line(&mut guess)
@@ -20,8 +19,13 @@ fn main() {
 
         // trim() removes any whitespace at the beggining and the end of the line
         // parse() converts to another type, we need to specify with : type
-        // parse() returns a Result type that can be handle by expect()
-        let guess: i32 = guess.trim().parse().expect("Please type a number!");
+        // parse() returns a Result type that can be handle by the match experssion
+        let guess: i32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };
+
+        tries += 1;
 
         println!("Your guess is {}", guess);
 
