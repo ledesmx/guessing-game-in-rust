@@ -5,12 +5,11 @@ use std::io;
 fn main() {
     // secret_number is a i32 by default
     let secret_number = rand::thread_rng().gen_range(1..=1000);
-    println!("The secret number is {secret_number}");
+    let mut tries = 0;
 
     println!("Guess the number between 1 and 1000");
-
     println!("Please input your guess.");
-    let mut tries = 0;
+
     loop {
         let mut guess = String::new();
         io::stdin()
@@ -26,8 +25,6 @@ fn main() {
         };
 
         tries += 1;
-
-        println!("Your guess is {}", guess);
 
         // Ordering is a enum, and has the variants Less, Greater & Equal
 
